@@ -36,7 +36,7 @@ export const projects: Project[] = [
         gallery: ["/projects/aulalens_home.webp", "/projects/aulalens_teachers.webp", "/projects/aulalens_students.webp"]
     },
     {
-        title: "fontray",
+        title: "Fontray",
         slug: "fontray",
         description:
             "Fontray es una aplicación web innovadora diseñada para explorar, previsualizar y seleccionar fuentes de Google Fonts de manera eficiente. Su propósito es simplificar el proceso de encontrar la tipografía perfecta para proyectos de diseño y desarrollo, ofreciendo una experiencia de usuario intuitiva y dinámica.",
