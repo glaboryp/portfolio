@@ -1,0 +1,205 @@
+<header
+  class="sticky top-0 z-50 w-full bg-base-bg/80 dark:bg-base-dark-bg/80 backdrop-blur-md border-b border-base-border dark:border-base-dark-border"
+>
+  <nav class="max-w-6xl mx-auto px-4 md:px-8 py-4">
+    <div class="flex items-center justify-between">
+      <a
+        href="#"
+        class="text-xl font-bold text-base-text dark:text-base-dark-text hover:text-brand dark:hover:text-brand transition-colors"
+      >
+        Gloria Labory
+      </a>
+
+      <div class="hidden md:flex items-center gap-8">
+        <a
+          href="#tecnologias"
+          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+        >
+          Tecnologías
+        </a>
+        <a
+          href="#proyectos"
+          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+        >
+          Proyectos
+        </a>
+        <a
+          href="#contacto"
+          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+        >
+          Contacto
+        </a>
+
+        <button
+          id="theme-toggle"
+          type="button"
+          class="p-2 rounded-lg hover:bg-base-bg-alt dark:hover:bg-base-dark-bg-alt transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          <svg
+            id="theme-toggle-dark-icon"
+            class="hidden w-5 h-5 text-base-text dark:text-base-dark-text"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            ></path>
+          </svg>
+          <svg
+            id="theme-toggle-light-icon"
+            class="hidden w-5 h-5 text-base-text dark:text-base-dark-text"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Botón menú móvil -->
+      <div class="flex md:hidden items-center gap-4">
+        <!-- Modo oscuro/claro móvil -->
+        <button
+          id="theme-toggle-mobile"
+          type="button"
+          class="p-2 rounded-lg hover:bg-base-bg-alt dark:hover:bg-base-dark-bg-alt transition-colors"
+          aria-label="Toggle dark mode"
+        >
+          <svg
+            id="theme-toggle-dark-icon-mobile"
+            class="hidden w-5 h-5 text-base-text dark:text-base-dark-text"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+            ></path>
+          </svg>
+          <svg
+            id="theme-toggle-light-icon-mobile"
+            class="hidden w-5 h-5 text-base-text dark:text-base-dark-text"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+          >
+            <path
+              d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+              fill-rule="evenodd"
+              clip-rule="evenodd"></path>
+          </svg>
+        </button>
+
+        <button
+          id="mobile-menu-button"
+          type="button"
+          class="p-2 rounded-lg hover:bg-base-bg-alt dark:hover:bg-base-dark-bg-alt transition-colors"
+          aria-label="Toggle menu"
+        >
+          <svg
+            class="w-6 h-6 text-base-text dark:text-base-dark-text"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú móvil -->
+    <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-4">
+      <a
+        href="#tecnologias"
+        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+      >
+        Tecnologías
+      </a>
+      <a
+        href="#proyectos"
+        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+      >
+        Proyectos
+      </a>
+      <a
+        href="#contacto"
+        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+      >
+        Contacto
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  function initTheme() {
+    const themeToggle = document.getElementById("theme-toggle");
+    const themeToggleMobile = document.getElementById("theme-toggle-mobile");
+    const html = document.documentElement;
+
+    const darkIcons = [
+      document.getElementById("theme-toggle-dark-icon"),
+      document.getElementById("theme-toggle-dark-icon-mobile"),
+    ];
+    const lightIcons = [
+      document.getElementById("theme-toggle-light-icon"),
+      document.getElementById("theme-toggle-light-icon-mobile"),
+    ];
+
+    const currentTheme = localStorage.getItem("theme") || "light";
+
+    if (currentTheme === "dark") {
+      html.classList.add("dark");
+      darkIcons.forEach((icon) => icon?.classList.add("hidden"));
+      lightIcons.forEach((icon) => icon?.classList.remove("hidden"));
+    } else {
+      html.classList.remove("dark");
+      darkIcons.forEach((icon) => icon?.classList.remove("hidden"));
+      lightIcons.forEach((icon) => icon?.classList.add("hidden"));
+    }
+
+    function toggleTheme() {
+      html.classList.toggle("dark");
+
+      if (html.classList.contains("dark")) {
+        localStorage.setItem("theme", "dark");
+        darkIcons.forEach((icon) => icon?.classList.add("hidden"));
+        lightIcons.forEach((icon) => icon?.classList.remove("hidden"));
+      } else {
+        localStorage.setItem("theme", "light");
+        darkIcons.forEach((icon) => icon?.classList.remove("hidden"));
+        lightIcons.forEach((icon) => icon?.classList.add("hidden"));
+      }
+    }
+
+    themeToggle?.addEventListener("click", toggleTheme);
+    themeToggleMobile?.addEventListener("click", toggleTheme);
+
+    const mobileMenuButton = document.getElementById("mobile-menu-button");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    mobileMenuButton?.addEventListener("click", () => {
+      mobileMenu?.classList.toggle("hidden");
+    });
+
+    const mobileMenuLinks = mobileMenu?.querySelectorAll("a");
+    mobileMenuLinks?.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu?.classList.add("hidden");
+      });
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTheme);
+  } else {
+    initTheme();
+  }
+</script>
