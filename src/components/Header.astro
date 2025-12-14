@@ -155,12 +155,14 @@
 
     const currentTheme = localStorage.getItem("theme") || "light";
 
-    if (currentTheme === "dark") {
-      html.classList.add("dark");
+    // Set initial icon state based on current class (applied in Layout) or localstorage
+    if (
+      document.documentElement.classList.contains("dark") ||
+      currentTheme === "dark"
+    ) {
       darkIcons.forEach((icon) => icon?.classList.add("hidden"));
       lightIcons.forEach((icon) => icon?.classList.remove("hidden"));
     } else {
-      html.classList.remove("dark");
       darkIcons.forEach((icon) => icon?.classList.remove("hidden"));
       lightIcons.forEach((icon) => icon?.classList.add("hidden"));
     }
