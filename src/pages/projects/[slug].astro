@@ -1,0 +1,499 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { projects } from "../../data/projects";
+
+export function getStaticPaths() {
+    return projects.map((project) => ({
+        params: { slug: project.slug },
+        props: { project },
+    }));
+}
+
+const { project } = Astro.props;
+---
+
+<Layout title={`${project.title} | Gloria Labory`}>
+    <Header />
+    <main class="pt-24 pb-16 px-4 md:px-8 max-w-7xl mx-auto space-y-8 flex-1">
+        {/* Breadcrumb / Back Link */}
+        <div>
+            <a
+                href="/#proyectos"
+                class="inline-flex items-center gap-2 text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors"
+            >
+                <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Volver a proyectos
+            </a>
+        </div>
+
+        {/* Content Grid */}
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Main Content (Left Column) - Takes up 7/12 columns */}
+            <div class="lg:col-span-7 space-y-8">
+                {/* Header (Title & Tags) - Moved inside left column */}
+                <div class="space-y-6">
+                    <h1
+                        class="text-4xl md:text-5xl font-bold text-base-text dark:text-base-dark-text"
+                    >
+                        {project.title}
+                    </h1>
+
+                    <div class="flex flex-wrap gap-2">
+                        {
+                            project.technologies.map((tech, index) => (
+                                <span
+                                    class={`px-3 py-1 text-sm font-medium rounded-full ${
+                                        index % 2 === 0
+                                            ? "bg-brand-light/20 text-brand-dark dark:bg-brand/20 dark:text-brand-light"
+                                            : "bg-complementary/20 text-complementary-dark dark:bg-complementary/20 dark:text-complementary"
+                                    }`}
+                                >
+                                    {tech}
+                                </span>
+                            ))
+                        }
+                    </div>
+                </div>
+
+                {/* Description */}
+                <div
+                    class="prose dark:prose-invert max-w-none text-base-text dark:text-base-dark-text leading-relaxed text-lg"
+                >
+                    <p>{project.description}</p>
+                </div>
+
+                {/* Links Section */}
+                <div
+                    class="flex flex-wrap gap-4 pt-4 border-t border-base-border dark:border-base-dark-border"
+                >
+                    {
+                        project.github && (
+                            <a
+                                href={project.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-base-bg-alt dark:bg-base-dark-bg-alt border border-base-border dark:border-base-dark-border rounded-lg hover:border-brand dark:hover:border-brand transition-all group"
+                            >
+                                <svg
+                                    class="w-5 h-5 text-brand group-hover:scale-110 transition-transform"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                                </svg>
+                                <span class="font-medium text-base-text dark:text-base-dark-text">
+                                    Ver Código
+                                </span>
+                            </a>
+                        )
+                    }
+
+                    {
+                        project.demo && (
+                            <a
+                                href={project.demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-all"
+                            >
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                    />
+                                </svg>
+                                <span>Ver Demo</span>
+                            </a>
+                        )
+                    }
+                </div>
+            </div>
+
+            {/* Gallery Section (Right Column) */}
+            <div class="lg:col-span-5 space-y-4 lg:sticky lg:top-24">
+                <h3
+                    class="text-xl font-semibold text-base-text dark:text-base-dark-text"
+                >
+                    Galería
+                </h3>
+
+                {
+                    project.gallery && project.gallery.length > 0 ? (
+                        <div class="relative group rounded-lg overflow-hidden border border-base-border dark:border-base-dark-border shadow-sm aspect-video bg-base-bg-alt dark:bg-base-dark-bg-alt">
+                            {/* Images Container */}
+                            <div
+                                id="carousel-container"
+                                class="relative w-full h-auto"
+                            >
+                                {project.gallery.map((img, index) => (
+                                    <div
+                                        class={`absolute inset-0 w-full h-auto transition-opacity duration-500 ease-in-out ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"}`}
+                                        data-carousel-item
+                                    >
+                                        <img
+                                            src={img}
+                                            alt={`Galería ${project.title} - Imagen ${index + 1}`}
+                                            class="w-full h-auto object-contain"
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Controls - Only show if more than 1 image */}
+                            {project.gallery.length > 1 && (
+                                <>
+                                    {/* Prev Button */}
+                                    <button
+                                        id="prev-btn"
+                                        class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 z-20"
+                                        aria-label="Imagen anterior"
+                                    >
+                                        <svg
+                                            class="w-6 h-6"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M15 19l-7-7 7-7"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    {/* Next Button */}
+                                    <button
+                                        id="next-btn"
+                                        class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 z-20"
+                                        aria-label="Siguiente imagen"
+                                    >
+                                        <svg
+                                            class="w-6 h-6"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                                stroke-width="2"
+                                                d="M9 5l7 7-7 7"
+                                            />
+                                        </svg>
+                                    </button>
+
+                                    {/* Indicators */}
+                                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                                        {project.gallery.map((_, index) => (
+                                            <button
+                                                class={`w-2.5 h-2.5 rounded-full transition-all ${index === 0 ? "bg-white scale-110" : "bg-white/50 hover:bg-white/80"}`}
+                                                data-indicator={index}
+                                                aria-label={`Ir a imagen ${index + 1}`}
+                                            />
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    ) : (
+                        <div class="rounded-lg overflow-hidden border border-base-border dark:border-base-dark-border shadow-sm">
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                class="w-full h-auto object-cover"
+                            />
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+    </main>
+    {/* Lightbox Modal */}
+    <div
+        id="lightbox-modal"
+        class="fixed inset-0 z-50 hidden bg-black/90 flex items-center justify-center p-4 opacity-0 transition-opacity duration-300"
+    >
+        <button
+            id="lightbox-close"
+            class="absolute top-4 right-4 text-white p-2 hover:bg-white/10 rounded-full transition-colors z-50"
+        >
+            <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <button
+            id="lightbox-prev"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-white p-3 hover:bg-white/10 rounded-full transition-colors hidden md:block z-50"
+        >
+            <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+
+        <button
+            id="lightbox-next"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-white p-3 hover:bg-white/10 rounded-full transition-colors hidden md:block z-50"
+        >
+            <svg
+                class="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+
+        <img
+            id="lightbox-image"
+            src=""
+            alt="Vista completa"
+            class="max-w-full max-h-screen object-contain scale-95 transition-transform duration-300"
+        />
+    </div>
+
+    <Footer />
+</Layout>
+
+<script>
+    // Setup Carousel & Lightbox Logic
+    document.addEventListener("astro:page-load", () => {
+        initCarousel();
+        initLightbox();
+    });
+
+    initCarousel();
+    initLightbox();
+
+    function initCarousel() {
+        const container = document.getElementById("carousel-container");
+        if (!container) return;
+
+        const items = container.querySelectorAll("[data-carousel-item]");
+        const prevBtn = document.getElementById("prev-btn");
+        const nextBtn = document.getElementById("next-btn");
+        const indicators = document.querySelectorAll("[data-indicator]");
+
+        // Make items clickable for lightbox
+        items.forEach((item, index) => {
+            item.classList.add("cursor-zoom-in");
+            item.addEventListener("click", () => openLightbox(index));
+        });
+
+        if (items.length <= 1) return;
+
+        let currentIndex = 0;
+
+        function showSlide(index: number) {
+            if (index < 0) index = items.length - 1;
+            if (index >= items.length) index = 0;
+
+            currentIndex = index;
+
+            items.forEach((item, i) => {
+                if (i === currentIndex) {
+                    item.classList.remove(
+                        "opacity-0",
+                        "z-0",
+                        "pointer-events-none",
+                    );
+                    item.classList.add("opacity-100", "z-10");
+                } else {
+                    item.classList.add(
+                        "opacity-0",
+                        "z-0",
+                        "pointer-events-none",
+                    );
+                    item.classList.remove("opacity-100", "z-10");
+                }
+            });
+
+            indicators.forEach((indicator, i) => {
+                if (i === currentIndex) {
+                    indicator.classList.remove(
+                        "bg-white/50",
+                        "hover:bg-white/80",
+                    );
+                    indicator.classList.add("bg-white", "scale-110");
+                } else {
+                    indicator.classList.add("bg-white/50", "hover:bg-white/80");
+                    indicator.classList.remove("bg-white", "scale-110");
+                }
+            });
+        }
+
+        prevBtn?.addEventListener("click", (e) => {
+            e.stopPropagation(); // Prevent opening lightbox when clicking controls
+            showSlide(currentIndex - 1);
+        });
+        nextBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            showSlide(currentIndex + 1);
+        });
+
+        indicators.forEach((ind) => {
+            ind.addEventListener("click", (e) => {
+                e.stopPropagation();
+                const target = e.target as HTMLElement;
+                const index = parseInt(target.dataset.indicator || "0");
+                showSlide(index);
+            });
+        });
+    }
+
+    let lightboxIndex = 0;
+
+    // Store images list outside to be accessible
+    function getGalleryImages(): string[] {
+        const container = document.getElementById("carousel-container");
+        if (!container) return [];
+        const imgs = container.querySelectorAll("img");
+        return Array.from(imgs).map((img) => img.src);
+    }
+
+    function openLightbox(index: number) {
+        const modal = document.getElementById("lightbox-modal");
+        const img = document.getElementById(
+            "lightbox-image",
+        ) as HTMLImageElement;
+        const images = getGalleryImages();
+
+        if (!modal || !img || images.length === 0) return;
+
+        lightboxIndex = index;
+        updateLightboxImage(img, images);
+
+        modal.classList.remove("hidden");
+        // Small delay to allow CSS transition to work
+        setTimeout(() => {
+            modal.classList.remove("opacity-0");
+            img.classList.remove("scale-95");
+            img.classList.add("scale-100");
+        }, 10);
+
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+    }
+
+    function closeLightbox() {
+        const modal = document.getElementById("lightbox-modal");
+        const img = document.getElementById(
+            "lightbox-image",
+        ) as HTMLImageElement;
+
+        if (!modal) return;
+
+        modal.classList.add("opacity-0");
+        img?.classList.remove("scale-100");
+        img?.classList.add("scale-95");
+
+        setTimeout(() => {
+            modal.classList.add("hidden");
+            document.body.style.overflow = "";
+        }, 300);
+    }
+
+    function updateLightboxImage(
+        imgElement: HTMLImageElement,
+        images: string[],
+    ) {
+        if (lightboxIndex < 0) lightboxIndex = images.length - 1;
+        if (lightboxIndex >= images.length) lightboxIndex = 0;
+
+        imgElement.src = images[lightboxIndex];
+    }
+
+    function initLightbox() {
+        const modal = document.getElementById("lightbox-modal");
+        const closeBtn = document.getElementById("lightbox-close");
+        const prevBtn = document.getElementById("lightbox-prev");
+        const nextBtn = document.getElementById("lightbox-next");
+        const img = document.getElementById(
+            "lightbox-image",
+        ) as HTMLImageElement;
+
+        if (!modal) return;
+
+        closeBtn?.addEventListener("click", closeLightbox);
+
+        prevBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const images = getGalleryImages();
+            lightboxIndex--;
+            updateLightboxImage(img, images);
+        });
+
+        nextBtn?.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const images = getGalleryImages();
+            lightboxIndex++;
+            updateLightboxImage(img, images);
+        });
+
+        // Close on backdrop click
+        modal.addEventListener("click", (e) => {
+            if (e.target === modal) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener("keydown", (e) => {
+            if (modal.classList.contains("hidden")) return;
+
+            if (e.key === "Escape") closeLightbox();
+            if (e.key === "ArrowLeft") {
+                const images = getGalleryImages();
+                lightboxIndex--;
+                updateLightboxImage(img, images);
+            }
+            if (e.key === "ArrowRight") {
+                const images = getGalleryImages();
+                lightboxIndex++;
+                updateLightboxImage(img, images);
+            }
+        });
+    }
+</script>

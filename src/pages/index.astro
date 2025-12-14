@@ -1,16 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Hero from '../components/Hero.astro';
-import Skills from '../components/Skills.astro';
-import Projects from '../components/Projects.astro';
-import Contact from '../components/Contact.astro';
-import Footer from '../components/Footer.astro';
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Skills from "../components/Skills.astro";
+import Projects from "../components/Projects.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="Gloria Labory | Desarrolladora Full-Stack">
   <Header />
-  <main>
+  <main class="flex-1">
     <section id="hero">
       <Hero />
     </section>
@@ -20,7 +20,10 @@ import Footer from '../components/Footer.astro';
     <section id="proyectos" class="py-20 px-4 md:px-8 max-w-5xl mx-auto">
       <Projects />
     </section>
-    <section id="contacto" class="py-20 px-4 md:px-8 max-w-3xl mx-auto text-center">
+    <section
+      id="contacto"
+      class="py-20 px-4 md:px-8 max-w-3xl mx-auto text-center"
+    >
       <Contact />
     </section>
   </main>
