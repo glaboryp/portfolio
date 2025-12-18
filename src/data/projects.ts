@@ -51,7 +51,7 @@ export const projects: Project[] = [
         github: "https://github.com/glaboryp/fontray",
         demo: "https://fontray.onrender.com/",
         post: null,
-        gallery: ["/projects/fontray_home.webp", "/projects/fontray_font_choose.webp", "/projects/fontray_font_chosen.webp", "/projects/fontray_font_list.webp"]
+        gallery: ["/projects/fontray_home.webp", "/projects/fontray_font_choose.webp", "/projects/fontray_font_chosen.webp", "/projects/fontray_list.webp"]
     },
     {
         title: "Breakout Game",
