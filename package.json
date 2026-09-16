@@ -2,7 +2,7 @@
   "name": "portfolio-gloria-labory",
   "type": "module",
   "version": "1.0.0",
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@12.4.2",
   "engines": {
     "node": ">=22.12.0"
   },
