@@ -13,25 +13,29 @@
       <div class="hidden md:flex items-center gap-8">
         <a
           href="#experiencia"
-          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+          data-nav-link="experiencia"
+          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand focus:outline-none focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-4 transition-colors font-medium"
         >
           Experiencia Laboral
         </a>
         <a
           href="#proyectos"
-          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+          data-nav-link="proyectos"
+          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand focus:outline-none focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-4 transition-colors font-medium"
         >
           Proyectos
         </a>
         <a
           href="#tecnologias"
-          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+          data-nav-link="tecnologias"
+          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand focus:outline-none focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-4 transition-colors font-medium"
         >
           Tecnologías
         </a>
         <a
           href="#contacto"
-          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+          data-nav-link="contacto"
+          class="text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand focus:outline-none focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-4 transition-colors font-medium"
         >
           Contacto
         </a>
@@ -39,7 +43,7 @@
         <button
           id="theme-toggle"
           type="button"
-          class="p-2 rounded-lg hover:bg-base-bg-alt dark:hover:bg-base-dark-bg-alt transition-colors"
+          class="p-3 rounded-lg hover:bg-base-bg-alt dark:hover:bg-base-dark-bg-alt transition-colors"
           aria-label="Toggle dark mode"
         >
           <svg
@@ -72,7 +76,7 @@
         <button
           id="theme-toggle-mobile"
           type="button"
-          class="p-2 rounded-lg hover:bg-base-bg-alt dark:hover:bg-base-dark-bg-alt transition-colors"
+          class="p-3 rounded-lg hover:bg-base-bg-alt dark:hover:bg-base-dark-bg-alt transition-colors"
           aria-label="Toggle dark mode"
         >
           <svg
@@ -101,7 +105,7 @@
         <button
           id="mobile-menu-button"
           type="button"
-          class="p-2 rounded-lg hover:bg-base-bg-alt dark:hover:bg-base-dark-bg-alt transition-colors"
+          class="p-3 rounded-lg hover:bg-base-bg-alt dark:hover:bg-base-dark-bg-alt transition-colors"
           aria-label="Toggle menu"
         >
           <svg
@@ -124,25 +128,29 @@
     <div id="mobile-menu" class="hidden md:hidden mt-4 pb-4 space-y-4">
       <a
         href="#experiencia"
-        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+        data-nav-link="experiencia"
+        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand focus:outline-none focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-4 transition-colors font-medium"
       >
         Experiencia Laboral
       </a>
       <a
         href="#proyectos"
-        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+        data-nav-link="proyectos"
+        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand focus:outline-none focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-4 transition-colors font-medium"
       >
         Proyectos
       </a>
       <a
         href="#tecnologias"
-        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+        data-nav-link="tecnologias"
+        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand focus:outline-none focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-4 transition-colors font-medium"
       >
         Tecnologías
       </a>
       <a
         href="#contacto"
-        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand transition-colors font-medium"
+        data-nav-link="contacto"
+        class="block text-base-text-muted dark:text-base-dark-text-muted hover:text-brand dark:hover:text-brand focus:outline-none focus-visible:outline-2 focus-visible:outline-brand focus-visible:outline-offset-4 transition-colors font-medium"
       >
         Contacto
       </a>
@@ -211,9 +219,47 @@
     });
   }
 
+  function initScrollSpy() {
+    const navLinks = document.querySelectorAll("[data-nav-link]");
+    if (!navLinks.length) return;
+
+    const sections = Array.from(navLinks)
+      .map((link) => document.getElementById(link.getAttribute("data-nav-link") || ""))
+      .filter((el) => el !== null);
+
+    const setActive = (id) => {
+      navLinks.forEach((link) => {
+        const isActive = link.getAttribute("data-nav-link") === id;
+        link.classList.toggle("text-brand", isActive);
+        link.classList.toggle("dark:text-brand", isActive);
+        link.classList.toggle("text-base-text-muted", !isActive);
+        link.classList.toggle("dark:text-base-dark-text-muted", !isActive);
+        if (isActive) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries.filter((entry) => entry.isIntersecting);
+        if (visible.length === 0) return;
+        visible.sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        setActive(visible[0].target.id);
+      },
+      { rootMargin: "-40% 0px -55% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
+    );
+
+    sections.forEach((section) => observer.observe(section));
+  }
+
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initTheme);
+    document.addEventListener("DOMContentLoaded", initScrollSpy);
   } else {
     initTheme();
+    initScrollSpy();
   }
 </script>

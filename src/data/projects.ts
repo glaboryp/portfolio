@@ -10,6 +10,28 @@ export interface Project {
     gallery?: string[];
 }
 
+type TechCategory = "frontend" | "backend";
+
+const TECH_CATEGORY: Record<string, TechCategory> = {
+    "Nuxt 3": "frontend",
+    "TypeScript": "frontend",
+    "Tailwind CSS": "frontend",
+    "PWA": "frontend",
+    "Chrome AI": "frontend",
+    "Nuxt UI": "frontend",
+    "Vue.js": "frontend",
+    "Inertia.js": "frontend",
+    "HTML": "frontend",
+    "CSS": "frontend",
+    "JavaScript": "frontend",
+    "Laravel": "backend",
+    "PostgreSQL": "backend",
+    "Google Classroom API": "backend",
+};
+
+/** Frontend techs render with the brand (orange) accent; backend/infra with the complementary (blue) one. Unknown techs default to frontend. */
+export const isFrontendTech = (tech: string) => TECH_CATEGORY[tech] !== "backend";
+
 export const projects: Project[] = [
     {
         title: "DocuPrism",

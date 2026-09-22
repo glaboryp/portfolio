@@ -1,5 +1,5 @@
 ---
-import { projects } from "../data/projects";
+import { projects, isFrontendTech } from "../data/projects";
 ---
 
 <div class="space-y-12">
@@ -15,14 +15,14 @@ import { projects } from "../data/projects";
   <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     {
       projects.map((project) => (
-        <article class="group bg-base-bg-alt dark:bg-base-dark-bg-alt border border-base-border dark:border-base-dark-border rounded-lg overflow-hidden hover:border-brand dark:hover:border-brand transition-all hover:shadow-xl">
+        <article class="group bg-base-bg-alt dark:bg-base-dark-bg-alt border border-base-border dark:border-base-dark-border rounded-lg overflow-hidden hover:border-brand dark:hover:border-brand transition hover:shadow-xl">
           <div class="relative overflow-hidden aspect-video bg-base-border dark:bg-base-dark-border">
             <a
               href={`/projects/${project.slug}`}
               class="block w-full h-full cursor-pointer"
             >
               <img
-                src={project.image}
+                src={project.gallery && project.gallery.length > 0 ? project.gallery[0] : project.image}
                 alt={`Vista previa de ${project.title}`}
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                 loading="lazy"
@@ -45,10 +45,10 @@ import { projects } from "../data/projects";
             </p>
 
             <div class="flex flex-wrap gap-2">
-              {project.technologies.map((tech, index) => (
+              {project.technologies.map((tech) => (
                 <span
                   class={`px-3 py-1 text-xs font-medium rounded-full ${
-                    index % 2 === 0
+                    isFrontendTech(tech)
                       ? "bg-brand-light/20 text-brand-dark dark:bg-brand/20 dark:text-brand-light"
                       : "bg-complementary/20 text-complementary-dark dark:bg-complementary/20 dark:text-complementary"
                   }`}
