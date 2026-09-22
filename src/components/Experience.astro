@@ -1,11 +1,19 @@
 ---
 const experiences = [
   {
+    role: "Senior Full Stack Developer",
+    company: "Homedoctor",
+    period: "Jun 2026 — Actualidad",
+    isCurrent: true,
+    description: "Responsable de la aplicación móvil híbrida principal, desarrollada con <span class='font-medium text-base-text dark:text-base-dark-text'>Vue.js</span>. Contribuye además de forma recurrente en la API construida con <span class='font-medium text-base-text dark:text-base-dark-text'>Laravel</span>, tanto en funcionalidades puramente de backend como en aquellas que requieren datos para la app móvil.",
+    highlights: ["Aplicación móvil híbrida", "Vue.js", "API en Laravel"]
+  },
+  {
     role: "Full Stack Developer",
     company: "Proyectos Independientes / Freelance",
     period: "Nov 2019 — Abr 2026",
     isCurrent: false,
-    description: "Diseño y desarrollo integral de aplicaciones web personalizadas. Especializada en la creación de arquitecturas escalables con <span class='font-medium text-zinc-800 dark:text-zinc-200'>Laravel</span> y frontends reactivos con <span class='font-medium text-zinc-800 dark:text-zinc-200'>Vue.js</span>. Gestión directa de bases de datos MySQL y despliegue en entornos Nginx.",
+    description: "Diseño y desarrollo integral de aplicaciones web personalizadas. Especializada en la creación de arquitecturas escalables con <span class='font-medium text-base-text dark:text-base-dark-text'>Laravel</span> y frontends reactivos con <span class='font-medium text-base-text dark:text-base-dark-text'>Vue.js</span>. Gestión directa de bases de datos MySQL y despliegue en entornos Nginx.",
     highlights: ["Arquitecturas robustas", "Optimización de rendimiento", "Desarrollo de APIs REST"]
   },
   {
@@ -14,59 +22,59 @@ const experiences = [
     link: "https://atlascloud.es/",
     period: "Sept 2017 — Nov 2019",
     isCurrent: false,
-    description: "Desarrollo de soluciones empresariales sobre la plataforma Salesforce. Implementación de lógica de negocio compleja utilizando <span class='font-medium text-zinc-800 dark:text-zinc-200'>Java</span> (Apex), <span class='font-medium text-zinc-800 dark:text-zinc-200'>JavaScript</span> y creación de interfaces de usuario dinámicas con HTML/CSS.",
+    description: "Desarrollo de soluciones empresariales sobre la plataforma Salesforce. Implementación de lógica de negocio compleja utilizando <span class='font-medium text-base-text dark:text-base-dark-text'>Java</span> (Apex), <span class='font-medium text-base-text dark:text-base-dark-text'>JavaScript</span> y creación de interfaces de usuario dinámicas con HTML/CSS.",
     highlights: ["Lógica empresarial", "Integraciones de terceros", "Entornos corporativos"]
   }
 ];
 ---
 
     <div class="text-center mb-12">
-        <h2 class="text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">Experiencia Laboral</h2>
+        <h2 class="text-3xl md:text-4xl font-bold text-base-text dark:text-base-dark-text">Experiencia Laboral</h2>
         <span class="block h-1 w-16 bg-brand mt-4 mx-auto"></span>
     </div>
 
-<div class="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-linear-to-b before:from-transparent before:via-zinc-300 before:to-transparent dark:before:via-zinc-700">
+<div class="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-linear-to-b before:from-transparent before:via-base-border before:to-transparent dark:before:via-base-dark-border">
   {
     experiences.map((exp) => (
       <div class="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-        
+
         <!-- Icon/Dot -->
-        <div class="absolute flex items-center justify-center w-10 h-10 rounded-full border-2 border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 shadow shrink-0 md:order-1 md:-translate-x-1/2 left-0 md:left-1/2 text-zinc-500">
-             <div class={`w-2 h-2 rounded-full ${exp.isCurrent ? "bg-brand animate-pulse" : "bg-zinc-400 dark:bg-zinc-500"}`}></div>
+        <div class="absolute flex items-center justify-center w-10 h-10 rounded-full border-2 border-base-border bg-base-bg-alt dark:border-base-dark-border dark:bg-base-dark-bg shadow shrink-0 md:order-1 md:-translate-x-1/2 left-0 md:left-1/2 text-base-text-muted">
+             <div class={`w-2 h-2 rounded-full ${exp.isCurrent ? "bg-brand animate-pulse" : "bg-base-border dark:bg-base-dark-border"}`}></div>
         </div>
 
         <!-- Content Card -->
-        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 bg-white dark:bg-zinc-900/50 rounded-xl border border-zinc-200/50 dark:border-zinc-800/50 shadow-sm hover:shadow-md transition-shadow duration-300 ml-16 md:ml-0">
+        <div class="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] p-6 bg-base-bg dark:bg-base-dark-bg-alt/50 rounded-xl border border-base-border/50 dark:border-base-dark-border/50 shadow-sm hover:shadow-md transition-shadow duration-300 ml-16 md:ml-0">
             <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-2 gap-2">
-                <time class="font-mono text-xs text-zinc-500 dark:text-zinc-400 uppercase tracking-widest">{exp.period}</time>
+                <time class="font-mono text-xs text-base-text-muted dark:text-base-dark-text-muted uppercase tracking-widest">{exp.period}</time>
                 {exp.isCurrent && (
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-300 border border-orange-200 dark:border-orange-800/50">
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-light/20 text-brand-dark dark:bg-brand/20 dark:text-brand-light border border-brand-light/40 dark:border-brand/40">
                         Actualidad
                     </span>
                 )}
             </div>
-            
-            <h3 class="text-xl md:text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-2">{exp.role}</h3>
-            
+
+            <h3 class="text-xl md:text-2xl font-bold text-base-text dark:text-base-dark-text mb-2">{exp.role}</h3>
+
             <div class="mb-4 text-base">
                 {exp.link ? (
                     <a href={exp.link} target="_blank" rel="noopener noreferrer" class="text-brand hover:underline font-medium inline-flex items-center gap-1 group/link">
                        {exp.company}
-                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3 opacity-0 -ml-2 group-hover/link:opacity-100 group-hover/link:ml-0 transition-all">
+                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-3 h-3 opacity-0 -ml-2 group-hover/link:opacity-100 group-hover/link:ml-0 transition">
                           <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd" />
                         </svg>
                     </a>
                 ) : (
-                     <span class="text-zinc-600 dark:text-zinc-400 font-medium">{exp.company}</span>
+                     <span class="text-base-text-muted dark:text-base-dark-text-muted font-medium">{exp.company}</span>
                 )}
             </div>
 
-            <p class="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed mb-4" set:html={exp.description}></p>
+            <p class="text-base-text-muted dark:text-base-dark-text-muted text-base leading-relaxed mb-4" set:html={exp.description}></p>
 
             <ul class="flex flex-wrap gap-2">
                 {exp.highlights.map((item) => (
-                     <li class="inline-flex items-center px-2 py-1 rounded-md bg-zinc-100 dark:bg-zinc-800/80 text-xs font-medium text-zinc-700 dark:text-zinc-300">
-                        <svg class="w-1.5 h-1.5 mr-1.5 text-zinc-400" fill="currentColor" viewBox="0 0 8 8">
+                     <li class="inline-flex items-center px-2 py-1 rounded-md bg-base-bg-alt dark:bg-base-dark-bg-alt text-xs font-medium text-base-text-muted dark:text-base-dark-text-muted">
+                        <svg class="w-1.5 h-1.5 mr-1.5 text-base-border dark:text-base-dark-border" fill="currentColor" viewBox="0 0 8 8">
                             <circle cx="4" cy="4" r="3" />
                         </svg>
                         {item}

@@ -1,0 +1,31 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout title="Página no encontrada | Gloria Labory">
+  <Header />
+  <main class="flex-1 flex items-center justify-center px-4 md:px-8 py-24 text-center">
+    <div class="max-w-lg mx-auto space-y-6">
+      <p class="font-mono text-sm text-brand tracking-widest uppercase">
+        Error 404
+      </p>
+      <h1 class="text-3xl md:text-4xl font-bold text-base-text dark:text-base-dark-text">
+        Esta página no existe
+      </h1>
+      <p class="text-base-text-muted dark:text-base-dark-text-muted leading-relaxed">
+        El enlace que has seguido puede estar roto o la página se ha movido.
+        Vuelve al inicio para ver la experiencia, los proyectos y cómo
+        contactar.
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-6 py-3 bg-brand text-base-text font-semibold rounded-lg hover:bg-brand-dark focus:outline-none focus:ring-4 focus:ring-brand-light/50 transition"
+      >
+        Volver al inicio
+      </a>
+    </div>
+  </main>
+  <Footer />
+</Layout>

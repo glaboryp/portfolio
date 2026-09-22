@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
-import { projects } from "../../data/projects";
+import { projects, isFrontendTech } from "../../data/projects";
 
 export function getStaticPaths() {
     return projects.map((project) => ({
@@ -53,10 +53,10 @@ const { project } = Astro.props;
 
                     <div class="flex flex-wrap gap-2">
                         {
-                            project.technologies.map((tech, index) => (
+                            project.technologies.map((tech) => (
                                 <span
                                     class={`px-3 py-1 text-sm font-medium rounded-full ${
-                                        index % 2 === 0
+                                        isFrontendTech(tech)
                                             ? "bg-brand-light/20 text-brand-dark dark:bg-brand/20 dark:text-brand-light"
                                             : "bg-complementary/20 text-complementary-dark dark:bg-complementary/20 dark:text-complementary"
                                     }`}
@@ -85,7 +85,7 @@ const { project } = Astro.props;
                                 href={project.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-base-bg-alt dark:bg-base-dark-bg-alt border border-base-border dark:border-base-dark-border rounded-lg hover:border-brand dark:hover:border-brand transition-all group"
+                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-base-bg-alt dark:bg-base-dark-bg-alt border border-base-border dark:border-base-dark-border rounded-lg hover:border-brand dark:hover:border-brand focus:outline-none focus:ring-4 focus:ring-brand-light/50 transition group"
                             >
                                 <svg
                                     class="w-5 h-5 text-brand group-hover:scale-110 transition-transform"
@@ -107,7 +107,7 @@ const { project } = Astro.props;
                                 href={project.demo}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand text-white font-semibold rounded-lg hover:bg-brand-dark transition-all"
+                                class="inline-flex items-center gap-2 px-5 py-2.5 bg-brand text-base-text font-semibold rounded-lg hover:bg-brand-dark transition"
                             >
                                 <svg
                                     class="w-5 h-5"
@@ -131,11 +131,11 @@ const { project } = Astro.props;
 
             {/* Gallery Section (Right Column) */}
             <div class="lg:col-span-5 space-y-4 lg:sticky lg:top-24">
-                <h3
+                <h2
                     class="text-xl font-semibold text-base-text dark:text-base-dark-text"
                 >
                     Galería
-                </h3>
+                </h2>
 
                 {
                     project.gallery && project.gallery.length > 0 ? (
@@ -149,11 +149,15 @@ const { project } = Astro.props;
                                     <div
                                         class={`absolute inset-0 w-full h-auto transition-opacity duration-500 ease-in-out ${index === 0 ? "opacity-100 z-10" : "opacity-0 z-0 pointer-events-none"}`}
                                         data-carousel-item
+                                        tabindex={index === 0 ? "0" : "-1"}
+                                        role="button"
+                                        aria-label={`Ampliar imagen ${index + 1} de ${project.gallery!.length}`}
                                     >
                                         <img
                                             src={img}
                                             alt={`Galería ${project.title} - Imagen ${index + 1}`}
                                             class="w-full h-auto object-contain"
+                                            loading={index === 0 ? "eager" : "lazy"}
                                         />
                                     </div>
                                 ))}
@@ -165,7 +169,7 @@ const { project } = Astro.props;
                                     {/* Prev Button */}
                                     <button
                                         id="prev-btn"
-                                        class="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 z-20"
+                                        class="absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition opacity-0 group-hover:opacity-100 focus:opacity-100 [@media(hover:none)]:opacity-100 z-20"
                                         aria-label="Imagen anterior"
                                     >
                                         <svg
@@ -186,7 +190,7 @@ const { project } = Astro.props;
                                     {/* Next Button */}
                                     <button
                                         id="next-btn"
-                                        class="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100 z-20"
+                                        class="absolute right-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/50 text-white hover:bg-black/70 transition opacity-0 group-hover:opacity-100 focus:opacity-100 [@media(hover:none)]:opacity-100 z-20"
                                         aria-label="Siguiente imagen"
                                     >
                                         <svg
@@ -205,13 +209,18 @@ const { project } = Astro.props;
                                     </button>
 
                                     {/* Indicators */}
-                                    <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                                    <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex z-20">
                                         {project.gallery.map((_, index) => (
                                             <button
-                                                class={`w-2.5 h-2.5 rounded-full transition-all ${index === 0 ? "bg-white scale-110" : "bg-white/50 hover:bg-white/80"}`}
+                                                class="group w-11 h-11 flex items-center justify-center"
                                                 data-indicator={index}
                                                 aria-label={`Ir a imagen ${index + 1}`}
-                                            />
+                                            >
+                                                <span
+                                                    data-indicator-dot
+                                                    class={`block w-2.5 h-2.5 rounded-full transition ${index === 0 ? "bg-white scale-110" : "bg-white/50 group-hover:bg-white/80"}`}
+                                                />
+                                            </button>
                                         ))}
                                     </div>
                                 </>
@@ -223,6 +232,7 @@ const { project } = Astro.props;
                                 src={project.image}
                                 alt={project.title}
                                 class="w-full h-auto object-cover"
+                                loading="lazy"
                             />
                         </div>
                     )
@@ -233,10 +243,14 @@ const { project } = Astro.props;
     {/* Lightbox Modal */}
     <div
         id="lightbox-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Galería ampliada"
         class="fixed inset-0 z-50 hidden bg-black/90 flex items-center justify-center p-4 opacity-0 transition-opacity duration-300"
     >
         <button
             id="lightbox-close"
+            aria-label="Cerrar galería"
             class="absolute top-4 right-4 text-white p-2 hover:bg-white/10 rounded-full transition-colors z-50"
         >
             <svg
@@ -255,7 +269,8 @@ const { project } = Astro.props;
 
         <button
             id="lightbox-prev"
-            class="absolute left-4 top-1/2 -translate-y-1/2 text-white p-3 hover:bg-white/10 rounded-full transition-colors hidden md:block z-50"
+            aria-label="Imagen anterior"
+            class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 text-white p-3 hover:bg-white/10 rounded-full transition-colors z-50"
         >
             <svg
                 class="w-8 h-8"
@@ -273,7 +288,8 @@ const { project } = Astro.props;
 
         <button
             id="lightbox-next"
-            class="absolute right-4 top-1/2 -translate-y-1/2 text-white p-3 hover:bg-white/10 rounded-full transition-colors hidden md:block z-50"
+            aria-label="Siguiente imagen"
+            class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 text-white p-3 hover:bg-white/10 rounded-full transition-colors z-50"
         >
             <svg
                 class="w-8 h-8"
@@ -319,10 +335,22 @@ const { project } = Astro.props;
         const nextBtn = document.getElementById("next-btn");
         const indicators = document.querySelectorAll("[data-indicator]");
 
-        // Make items clickable for lightbox
+        // Make items clickable and keyboard-operable for the lightbox
         items.forEach((item, index) => {
-            item.classList.add("cursor-zoom-in");
+            item.classList.add(
+                "cursor-zoom-in",
+                "focus:outline-none",
+                "focus-visible:ring-4",
+                "focus-visible:ring-brand-light/50",
+            );
             item.addEventListener("click", () => openLightbox(index));
+            item.addEventListener("keydown", (e) => {
+                const key = (e as KeyboardEvent).key;
+                if (key === "Enter" || key === " ") {
+                    e.preventDefault();
+                    openLightbox(index);
+                }
+            });
         });
 
         if (items.length <= 1) return;
@@ -343,6 +371,7 @@ const { project } = Astro.props;
                         "pointer-events-none",
                     );
                     item.classList.add("opacity-100", "z-10");
+                    item.setAttribute("tabindex", "0");
                 } else {
                     item.classList.add(
                         "opacity-0",
@@ -350,19 +379,19 @@ const { project } = Astro.props;
                         "pointer-events-none",
                     );
                     item.classList.remove("opacity-100", "z-10");
+                    item.setAttribute("tabindex", "-1");
                 }
             });
 
             indicators.forEach((indicator, i) => {
+                const dot = indicator.querySelector("[data-indicator-dot]");
+                if (!dot) return;
                 if (i === currentIndex) {
-                    indicator.classList.remove(
-                        "bg-white/50",
-                        "hover:bg-white/80",
-                    );
-                    indicator.classList.add("bg-white", "scale-110");
+                    dot.classList.remove("bg-white/50", "group-hover:bg-white/80");
+                    dot.classList.add("bg-white", "scale-110");
                 } else {
-                    indicator.classList.add("bg-white/50", "hover:bg-white/80");
-                    indicator.classList.remove("bg-white", "scale-110");
+                    dot.classList.add("bg-white/50", "group-hover:bg-white/80");
+                    dot.classList.remove("bg-white", "scale-110");
                 }
             });
         }
@@ -379,7 +408,7 @@ const { project } = Astro.props;
         indicators.forEach((ind) => {
             ind.addEventListener("click", (e) => {
                 e.stopPropagation();
-                const target = e.target as HTMLElement;
+                const target = e.currentTarget as HTMLElement;
                 const index = parseInt(target.dataset.indicator || "0");
                 showSlide(index);
             });
@@ -387,6 +416,7 @@ const { project } = Astro.props;
     }
 
     let lightboxIndex = 0;
+    let lastFocusedElement: HTMLElement | null = null;
 
     // Store images list outside to be accessible
     function getGalleryImages(): string[] {
@@ -408,12 +438,15 @@ const { project } = Astro.props;
         lightboxIndex = index;
         updateLightboxImage(img, images);
 
+        lastFocusedElement = document.activeElement as HTMLElement;
+
         modal.classList.remove("hidden");
         // Small delay to allow CSS transition to work
         setTimeout(() => {
             modal.classList.remove("opacity-0");
             img.classList.remove("scale-95");
             img.classList.add("scale-100");
+            document.getElementById("lightbox-close")?.focus();
         }, 10);
 
         document.body.style.overflow = "hidden"; // Prevent scrolling
@@ -434,7 +467,30 @@ const { project } = Astro.props;
         setTimeout(() => {
             modal.classList.add("hidden");
             document.body.style.overflow = "";
+            lastFocusedElement?.focus();
         }, 300);
+    }
+
+    function trapLightboxFocus(e: KeyboardEvent) {
+        if (e.key !== "Tab") return;
+        const modal = document.getElementById("lightbox-modal");
+        if (!modal || modal.classList.contains("hidden")) return;
+
+        const focusable = Array.from(
+            modal.querySelectorAll<HTMLElement>("button:not([disabled])"),
+        ).filter((el) => el.offsetParent !== null);
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+        }
     }
 
     function updateLightboxImage(
@@ -482,6 +538,8 @@ const { project } = Astro.props;
         // Keyboard navigation
         document.addEventListener("keydown", (e) => {
             if (modal.classList.contains("hidden")) return;
+
+            trapLightboxFocus(e);
 
             if (e.key === "Escape") closeLightbox();
             if (e.key === "ArrowLeft") {
