@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-22T08:48:13Z",
+  "title": "Design System: Gloria Labory — Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "naranja-distintivo": {
+        "role": "primary",
+        "displayName": "Naranja Distintivo",
+        "canonical": "#F97316",
+        "tonalRamp": ["#7C2D12", "#C2410C", "#EA580C", "#F97316", "#FB923C", "#FDBA74", "#FFEDD5", "#FFF7ED"]
+      },
+      "azul-apoyo": {
+        "role": "secondary",
+        "displayName": "Azul de Apoyo",
+        "canonical": "#2563EB",
+        "tonalRamp": ["#1E3A8A", "#1E40AF", "#1D4ED8", "#2563EB", "#3B82F6", "#93C5FD", "#DBEAFE", "#EFF6FF"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Nombre y titular del Hero únicamente." },
+      "headline": { "displayName": "Headline", "purpose": "Títulos de sección, siempre con la barra naranja de 4px debajo." },
+      "body": { "displayName": "Body", "purpose": "Párrafos descriptivos en Hero, Contacto y detalle de proyecto." },
+      "label": { "displayName": "Label", "purpose": "Navegación, nombres de tecnología y texto de botones." },
+      "mono": { "displayName": "Mono", "purpose": "Fechas del timeline de experiencia (IBM Plex Mono), reservada a metadatos temporales." }
+    },
+    "shadows": [
+      { "name": "hover-card", "value": "0 20px 25px -5px rgba(0,0,0,0.1)", "purpose": "Elevación al pasar el cursor sobre tarjetas de proyecto o de skill; ausente en reposo." },
+      { "name": "gallery-static", "value": "0 1px 2px rgba(0,0,0,0.05)", "purpose": "Sombra sutil y constante del contenedor de galería en el detalle de proyecto." }
+    ],
+    "motion": [
+      { "name": "ease-standard", "value": "all 0.2s ease", "purpose": "Transición por defecto en cambios de color, borde y escala al hover en toda la interfaz." }
+    ],
+    "breakpoints": [
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Acción principal de una sección (p. ej. Conectar en LinkedIn).",
+      "html": "<button class=\"ds-btn-primary\">Conectar en LinkedIn</button>",
+      "css": ".ds-btn-primary { background: var(--color-brand); color: var(--color-base-text); padding: 16px 32px; border-radius: 8px; font-weight: 600; border: none; transition: background 0.2s, transform 0.2s; } .ds-btn-primary:hover { background: var(--color-brand-dark); transform: scale(1.05); } .ds-btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(251, 146, 60, 0.5); }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Cualquier acción de igual o menor jerarquía que la primaria (enlaces sociales, Enviar Email, Ver Código). No existe botón sólido azul.",
+      "html": "<button class=\"ds-btn-outline\">GitHub</button>",
+      "css": ".ds-btn-outline { background: var(--color-base-bg-alt); color: var(--color-base-text); border: 1px solid var(--color-base-border); padding: 12px 24px; border-radius: 8px; font-weight: 500; transition: border-color 0.2s; } .ds-btn-outline:hover { border-color: var(--color-brand); }"
+    },
+    {
+      "name": "Tech Chip",
+      "kind": "chip",
+      "refersTo": "chip-brand",
+      "description": "Tag de tecnología: naranja para frontend, azul para backend/infra (taxonomía real, no por índice).",
+      "html": "<span class=\"ds-chip\">Vue.js</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; padding: 4px 12px; border-radius: 9999px; font-size: 0.75rem; font-weight: 500; background: rgba(251, 146, 60, 0.2); color: var(--color-brand-dark); }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": null,
+      "description": "Tarjeta de proyecto destacado: plana en reposo, borde naranja y sombra al hover.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card-media\"></div><div class=\"ds-card-body\"><h3 class=\"ds-card-title\">Nombre del proyecto</h3><p class=\"ds-card-desc\">Descripción breve del proyecto.</p></div></article>",
+      "css": ".ds-card { background: var(--color-base-bg-alt); border: 1px solid var(--color-base-border); border-radius: 8px; overflow: hidden; transition: border-color 0.2s, box-shadow 0.2s; } .ds-card:hover { border-color: var(--color-brand); box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); } .ds-card-media { aspect-ratio: 16 / 9; background: var(--color-base-border); } .ds-card-body { padding: 24px; } .ds-card-title { font-size: 1.5rem; font-weight: 700; color: var(--color-base-text); margin: 0 0 8px; } .ds-card-desc { color: var(--color-base-text-muted); line-height: 1.625; margin: 0; }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Enlace del header sticky con subrayado de color al hover.",
+      "html": "<a class=\"ds-nav-link\" href=\"#proyectos\">Proyectos</a>",
+      "css": ".ds-nav-link { color: var(--color-base-text-muted); font-weight: 500; text-decoration: none; transition: color 0.2s; } .ds-nav-link:hover, .ds-nav-link:focus-visible { color: var(--color-brand); }"
+    },
+    {
+      "name": "Experience Timeline Node",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Componente de firma: nodo circular sobre la línea vertical del timeline, pulsante cuando es el puesto actual.",
+      "html": "<div class=\"ds-timeline-item\"><span class=\"ds-timeline-dot ds-timeline-dot--active\"></span><div class=\"ds-timeline-card\"><time class=\"ds-timeline-date\">JUN 2026 — ACTUALIDAD</time><h3 class=\"ds-timeline-role\">Senior Full Stack Developer</h3></div></div>",
+      "css": ".ds-timeline-item { display: flex; align-items: center; gap: 16px; } .ds-timeline-dot { display: block; width: 16px; height: 16px; border-radius: 9999px; border: 2px solid var(--color-base-border); background: var(--color-base-bg-alt); } .ds-timeline-dot--active { background: var(--color-brand); animation: ds-pulse 2s infinite; } .ds-timeline-card { background: #fff; border: 1px solid rgba(0,0,0,0.05); border-radius: 12px; padding: 24px; box-shadow: 0 1px 2px rgba(0,0,0,0.05); } .ds-timeline-date { font-family: ui-monospace, monospace; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.75rem; color: var(--color-base-text-muted); } .ds-timeline-role { margin: 8px 0 0; font-size: 1.25rem; font-weight: 700; color: var(--color-base-text); } @keyframes ds-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "El Dossier Técnico",
+    "overview": "El portfolio se comporta como un expediente profesional: la evidencia (proyectos reales, trayectoria, stack) es la protagonista y la forma se mantiene sobria para no competir con ella. No hay decoración gratuita, ni gradientes, ni ilustraciones; cada elemento visual (borde, color, sombra) existe para ayudar a un reclutador a escanear y verificar información en segundos.\n\nEl naranja de marca es el único acento con peso propio: aparece en enlaces activos, CTAs y el punto de \"actualidad\" del timeline, y su escasez es justamente lo que le da fuerza. El azul solo diferencia una acción secundaria (por ejemplo, \"Ver Demo\" frente a \"Ver Código\"); nunca lidera una pantalla. El modo oscuro es un ciudadano de primera clase, no un extra: toda la paleta neutra está definida en pares claro/oscuro desde el primer token.",
+    "keyCharacteristics": [
+      "Plano en reposo; el único gesto visual es el hover (color, sombra, escala).",
+      "Un solo acento protagonista (naranja); el azul es siempre de apoyo.",
+      "Bordes de 1px como recurso principal de separación, no sombras.",
+      "Tipografía y color ya preparados para claro/oscuro con la clase .dark."
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "El naranja es el único color que puede liderar una acción o un estado activo en una vista dada. El azul solo aparece para diferenciar una segunda opción; si no hay una acción secundaria que distinguir, el azul no aparece.", "section": "colors" },
+      { "name": "The Hover-Only Shadow Rule", "body": "Ninguna tarjeta, botón o contenedor tiene sombra en su estado de reposo. La sombra es exclusivamente una señal de interactividad.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do usar el naranja como único acento con autoridad de marca por vista; su escasez es la regla (The One Accent Rule).",
+      "Do mantener tarjetas y botones planos en reposo; la sombra aparece solo en hover (The Hover-Only Shadow Rule).",
+      "Do usar el azul únicamente para diferenciar una acción secundaria de una primaria ya presente en la misma vista."
+    ],
+    "donts": [
+      "Don't dar al azul más peso visual que al naranja dentro de una misma pantalla — dejaría de ser un color de apoyo.",
+      "Don't añadir sombra en el estado de reposo de tarjetas o botones nuevos; rompe la identidad plana del sistema.",
+      "Don't introducir nuevas clases Tailwind crudas de paleta (zinc-*, orange-*, etc.) fuera de los tokens {colors.*}."
+    ]
+  }
+}
