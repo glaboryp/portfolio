@@ -14,13 +14,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@tailwindcss/postcss": "^4.0.0",
-    "@tailwindcss/vite": "^4.1.16",
-    "astro": "^7.4.0",
-    "tailwindcss": "^4.1.16"
+    "@tailwindcss/postcss": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.3",
+    "astro": "^7.4.1",
+    "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.10",
+    "@astrojs/check": "^0.9.11",
     "typescript": "^5.9.3"
   }
 }
